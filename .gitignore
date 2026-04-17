@@ -1,0 +1,32 @@
+## .NET / C# gitignore
+
+# Build outputs
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# Publish output (too large for GitHub — ~200MB)
+Publish/
+
+# Excel data file (auto-created on each machine at runtime)
+**/Data/*.xlsx
+**/Data/*.bak
+
+# NuGet packages (restored automatically)
+packages/
+*.nupkg
+
+# Visual Studio / Rider
+.vscode/settings.json
+.idea/
+*.rsuser
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+*.log

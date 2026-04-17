@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWindowsForms>true</UseWindowsForms>
+    <AssemblyName>GayatriElectronics</AssemblyName>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShopManagementApp.Business\ShopManagementApp.Business.csproj" />
+    <ProjectReference Include="..\ShopManagementApp.Models\ShopManagementApp.Models.csproj" />
+    <ProjectReference Include="..\ShopManagementApp.Utils\ShopManagementApp.Utils.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Embed ICO into EXE (ApplicationIcon) and copy both to output folder -->
+    <Content Include="Assets\AppIcon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\AppIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
