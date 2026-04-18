@@ -2,8 +2,14 @@
 
 <img src="ShopManagementApp.UI/Assets/AppIcon.png" width="120" alt="Gayatri Electronics Logo"/>
 
-# 🏪 Gayatri Electronics & Hardware
+# 🏪 SmartShop Manager
+
+### Universal Shop Management Desktop Application
+
+#### *Originally developed for Gayatri Electronics & Hardware*
 ### Shop Management Desktop Application
+👨‍💻 Developed by **Bhavesh Borse**
+🔗 GitHub: [Bhavesh-png](https://github.com/Bhavesh-png)
 
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet)](https://dotnet.microsoft.com/)
 [![WinForms](https://img.shields.io/badge/WinForms-Desktop-0078D4?style=for-the-badge&logo=windows)](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/)
@@ -237,6 +243,12 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 <div align="center">
 
-Made with ❤️ for **Gayatri Electronics & Hardware**
+### ❤️ Made for **Gayatri Electronics & Hardware**
+
+---
+
+👨‍💻 Developed by **Bhavesh Borse**
+🔗 GitHub: [Bhavesh-png](https://github.com/Bhavesh-png)
+
 
 </div>
