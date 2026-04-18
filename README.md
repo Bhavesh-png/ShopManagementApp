@@ -9,8 +9,11 @@
 [![WinForms](https://img.shields.io/badge/WinForms-Desktop-0078D4?style=for-the-badge&logo=windows)](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/)
 [![ClosedXML](https://img.shields.io/badge/ClosedXML-Excel-217346?style=for-the-badge&logo=microsoft-excel)](https://github.com/ClosedXML/ClosedXML)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/Bhavesh-png/ShopManagementApp?style=for-the-badge&logo=github&color=brightgreen)](https://github.com/Bhavesh-png/ShopManagementApp/releases/latest)
 
 *A complete, portable, offline Shop Management System for electronics and electrical hardware shops.*
+
+### ⬇️ [Download Latest Installer (Windows)](https://github.com/Bhavesh-png/ShopManagementApp/releases/latest)
 
 </div>
 
@@ -123,16 +126,28 @@ The app uses **ClosedXML** to manage a local `ShopData.xlsx` file.
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Windows 10 / 11
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (for development)
-- Visual Studio 2022 or VS Code
+### 🖥️ Option 1 — Install via Setup Wizard (Recommended)
 
-### Run from Source
+1. Go to [**Releases**](https://github.com/Bhavesh-png/ShopManagementApp/releases/latest)
+2. Download `GayatriElectronics_Setup_v1.0.0.exe`
+3. Run the installer → follows a standard Windows setup wizard
+4. App installs to `Program Files`, creates Desktop & Start Menu shortcuts
+5. Launch and log in with default credentials (`admin` / `1234`)
+
+> ✅ No .NET installation required — the runtime is bundled inside the installer.
+
+---
+
+### 💻 Option 2 — Run from Source (Developers)
+
+**Prerequisites:**
+- Windows 10 / 11
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- Visual Studio 2022 or VS Code
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/ShopManagementApp.git
+git clone https://github.com/Bhavesh-png/ShopManagementApp.git
 cd ShopManagementApp
 
 # Restore NuGet packages
@@ -142,13 +157,17 @@ dotnet restore
 dotnet run --project ShopManagementApp.UI
 ```
 
-### Build Portable EXE (No Installation Needed)
+### 📦 Build Your Own Installer
 
 ```bash
-dotnet publish ShopManagementApp.UI\ShopManagementApp.UI.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true --output ".\Publish\GayatriElectronics"
-```
+# Step 1 — Publish self-contained EXE
+dotnet publish ShopManagementApp.UI -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true
 
-The output folder contains a single `GayatriElectronics.exe` (~198 MB) that runs on **any Windows 10/11 PC** without installing .NET.
+# Step 2 — Compile installer (requires Inno Setup)
+& "D:\Inno Setup 6\ISCC.exe" "installer\GayatriElectronics_Setup.iss"
+
+# Output: installer\Output\GayatriElectronics_Setup_v1.0.0.exe
+```
 
 ---
 
