@@ -2,15 +2,40 @@ namespace ShopManagementApp.Utils
 {
     /// <summary>
     /// All constant values used across the application.
-    /// Change ShopName, ShopAddress, ShopPhone to match your shop.
+    ///
+    /// Shop information (name, address, phone, GST) is now stored in the
+    /// Settings sheet of ShopData.xlsx and loaded at startup into
+    /// <see cref="ShopInfo"/>. The four const fields below are compile-time
+    /// fallbacks only — they are shown if the Settings sheet cannot be read.
     /// </summary>
     public static class Constants
     {
-        // ── Shop Information ──────────────────────────────────────────────────
+        // ── Compile-time fallback shop information ────────────────────────────
+        // These are only used if ShopInfo has not yet been loaded from Excel.
         public const string ShopName    = "Gayatri Electronics & Hardware";
-        public const string ShopAddress = "123 Main Market, Your City - 400001";
-        public const string ShopPhone   = "+91 98765 43210";
-        public const string ShopGST     = "GST No: 29XXXXX0000X1Z5";
+        public const string ShopAddress = "Dhaner Tel-Sakri Dist-Dhule Maharashtra Pin Code - 424304";
+        public const string ShopPhone   = "+91 97641 31269";
+        public const string ShopGST     = "GST No: xxxxxxxxxxxxxxx";
+
+        // ── Settings-sheet key names (used by AdminService) ───────────────────
+        public const string ShopNameKey    = "ShopName";
+        public const string ShopAddressKey = "ShopAddress";
+        public const string ShopPhoneKey   = "ShopPhone";
+        public const string ShopGSTKey     = "ShopGST";
+
+        // ── Runtime shop information (loaded from Settings sheet at startup) ──
+        /// <summary>
+        /// Live shop information read from ShopData.xlsx → Settings sheet.
+        /// Updated by AdminService.LoadShopInfo() and AdminService.SaveShopInfo().
+        /// Use these properties everywhere instead of the const fields above.
+        /// </summary>
+        public static class ShopInfo
+        {
+            public static string Name    { get; set; } = ShopName;
+            public static string Address { get; set; } = ShopAddress;
+            public static string Phone   { get; set; } = ShopPhone;
+            public static string GST     { get; set; } = ShopGST;
+        }
 
         // ── Excel File Paths ──────────────────────────────────────────────────
         // Data folder sits next to the .exe file

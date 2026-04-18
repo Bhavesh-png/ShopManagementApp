@@ -90,7 +90,7 @@ namespace ShopManagementApp.UI.Forms
         // ── Build the fixed shell ─────────────────────────────────────────────
         private void Build()
         {
-            Text            = Constants.ShopName + "  –  Shop Management";
+            Text            = Constants.ShopInfo.Name + "  –  Shop Management";
             Size            = new Size(1200, 720);   // fallback if user restores window
             MinimumSize     = new Size(900, 560);
             StartPosition   = FormStartPosition.CenterScreen;
@@ -172,7 +172,7 @@ namespace ShopManagementApp.UI.Forms
             // Shop name label (starts after logo)
             _lblShopName = new Label
             {
-                Text      = Constants.ShopName,
+                Text      = Constants.ShopInfo.Name,
                 Location  = new Point(logoX, 0),
                 Size      = new Size(380, 52),
                 TextAlign = ContentAlignment.MiddleLeft,
@@ -219,7 +219,7 @@ namespace ShopManagementApp.UI.Forms
             // Shop name inside sidebar (visible when open)
             _sidebar.Controls.Add(new Label
             {
-                Text      = Constants.ShopName,
+                Text      = Constants.ShopInfo.Name,
                 ForeColor = Color.FromArgb(140, 140, 190),
                 Font      = new Font("Segoe UI", 8.5f, FontStyle.Bold),
                 Bounds    = new Rectangle(14, 10, 182, 42),

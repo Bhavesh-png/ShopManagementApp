@@ -44,8 +44,8 @@
 
 ### 🔧 Repairs
 - Track repairs with device type, fault description, technician, cost
-- Status tracking: Pending → In Progress → Completed
-- Full repair history with search and filter
+- Status tracking: Pending → In Progress → Completed → Delivered
+- Full repair history with colour-coded status rows
 
 ### 📦 Inventory Management
 - Add, Edit, Delete products
@@ -55,9 +55,19 @@
 
 ### 🔐 Admin Panel
 - Secure login (default: `admin` / `1234`)
-- View all sales and repair records
-- Change admin password
-- Full data overview
+- **Sidebar navigation** across 6 sections — no tab clutter
+- **📊 Dashboard** — key business stats at a glance
+- **🧾 All Sales** — full sales history table
+- **🔧 All Repairs** — complete repair job log
+- **📦 Products** — read-only view + launch Inventory Manager inline
+- **🔑 Change Password** — update admin credentials
+- **🏪 Shop Settings** — edit Shop Name, Address, Mobile, GST Number and save instantly
+
+### 🏪 Shop Setup (First Run)
+- On first launch on any PC a **setup dialog** appears automatically
+- Enter your shop name, address, mobile number and GST number
+- Settings are stored in `ShopData.xlsx` — no recompiling needed
+- Works on any PC: different shops can run the same app with their own data
 
 ---
 
@@ -73,14 +83,16 @@ ShopManagementApp/
 │   │   ├── BillingForm.cs
 │   │   ├── RepairForm.cs
 │   │   ├── InventoryForm.cs
-│   │   ├── AdminPanelForm.cs
-│   │   └── AdminLoginForm.cs
+│   │   ├── AdminPanelForm.cs        ← Sidebar nav + 6 content panels
+│   │   ├── AdminLoginForm.cs
+│   │   └── FirstRunSetupForm.cs     ← NEW: first-launch shop setup dialog
 │   └── Assets/
 │       ├── AppIcon.ico              ← App icon (EXE + taskbar)
 │       └── AppIcon.png              ← Logo in top bar
 │
 ├── ShopManagementApp.Business/      ← Business logic layer
 │   └── Services/
+│       ├── AdminService.cs          ← Auth + shop info load/save
 │       ├── BillingService.cs
 │       ├── RepairService.cs
 │       └── InventoryService.cs
@@ -100,7 +112,7 @@ ShopManagementApp/
 │   └── Repair.cs
 │
 └── ShopManagementApp.Utils/         ← Shared utilities
-    ├── Constants.cs
+    ├── Constants.cs                 ← ShopInfo runtime class + key constants
     ├── ValidationHelper.cs
     └── PrintHelper.cs
 ```
@@ -117,10 +129,11 @@ The app uses **ClosedXML** to manage a local `ShopData.xlsx` file.
 | `Sales` | Bill headers |
 | `SaleItems` | Individual line items per bill |
 | `Repairs` | Repair job records |
-| `Settings` | Admin credentials + schema version |
+| `Settings` | Admin credentials, schema version, **shop info** |
 
-> ✅ **The Excel file is created automatically on first run** — no manual setup needed.
-> ✅ **Schema versioning** — if the file format changes, the app backs up old data and creates a fresh file.
+> ✅ **The Excel file is created automatically on first run** — no manual setup needed.  
+> ✅ **Schema versioning** — if the file format changes, the app backs up old data and creates a fresh file.  
+> ✅ **Shop info is stored per-installation** — different PCs can have different shop names without changing the code.
 
 ---
 
@@ -129,10 +142,11 @@ The app uses **ClosedXML** to manage a local `ShopData.xlsx` file.
 ### 🖥️ Option 1 — Install via Setup Wizard (Recommended)
 
 1. Go to [**Releases**](https://github.com/Bhavesh-png/ShopManagementApp/releases/latest)
-2. Download `GayatriElectronics_Setup_v1.0.0.exe`
+2. Download `ShopManager_Setup_v1.0.0.exe`
 3. Run the installer → follows a standard Windows setup wizard
 4. App installs to `Program Files`, creates Desktop & Start Menu shortcuts
-5. Launch and log in with default credentials (`admin` / `1234`)
+5. On first launch, a **Shop Setup** dialog appears — enter your shop name and details
+6. Log in with default credentials (`admin` / `1234`) and change the password
 
 > ✅ No .NET installation required — the runtime is bundled inside the installer.
 
@@ -166,7 +180,7 @@ dotnet publish ShopManagementApp.UI -c Release -r win-x64 --self-contained true 
 # Step 2 — Compile installer (requires Inno Setup)
 & "D:\Inno Setup 6\ISCC.exe" "installer\GayatriElectronics_Setup.iss"
 
-# Output: installer\Output\GayatriElectronics_Setup_v1.0.0.exe
+# Output: installer\Output\ShopManager_Setup_v1.0.0.exe
 ```
 
 ---
@@ -208,6 +222,9 @@ dotnet publish ShopManagementApp.UI -c Release -r win-x64 --self-contained true 
 - **Double Buffering** — `SmoothPanel` class + `WS_EX_COMPOSITED` flag eliminates all flicker during page switching.
 - **Schema Versioning** — `ExcelManager` checks a `SchemaVersion` key on startup. Stale schemas trigger auto-backup + fresh file creation.
 - **Custom Billing Items** — `ProductId = 0` bypasses stock deduction for non-inventory items (labour charges, misc).
+- **Runtime Shop Info** — `Constants.ShopInfo.*` is populated from the Settings sheet at startup. All UI (top bar, sidebar, receipts, admin panel) reads live values — no recompile needed.
+- **First-Run Setup** — `FirstRunSetupForm` detects empty `ShopName` in Settings and blocks the main window until the user fills in their shop details.
+- **Admin Shop Settings** — Admins can update shop name, address, mobile, and GST at any time from the Admin Panel. Changes take effect immediately without restarting.
 - **Portable Build** — Single self-contained EXE bundles the entire .NET runtime.
 
 ---

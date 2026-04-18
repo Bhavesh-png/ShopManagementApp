@@ -51,10 +51,10 @@ namespace ShopManagementApp.Utils
             var right   = new StringFormat { Alignment = StringAlignment.Far };
 
             // ── Header ──
-            g.DrawString(Constants.ShopName,    fTitle,  Brushes.Black, new RectangleF(0, y, pw, 25), center); y += 22;
-            g.DrawString(Constants.ShopAddress, fNormal, Brushes.Black, new RectangleF(0, y, pw, 18), center); y += 15;
-            g.DrawString($"Ph: {Constants.ShopPhone}", fNormal, Brushes.Black, new RectangleF(0, y, pw, 18), center); y += 15;
-            g.DrawString(Constants.ShopGST,     fNormal, Brushes.Black, new RectangleF(0, y, pw, 18), center); y += 12;
+            g.DrawString(Constants.ShopInfo.Name,    fTitle,  Brushes.Black, new RectangleF(0, y, pw, 25), center); y += 22;
+            g.DrawString(Constants.ShopInfo.Address, fNormal, Brushes.Black, new RectangleF(0, y, pw, 18), center); y += 15;
+            g.DrawString($"Ph: {Constants.ShopInfo.Phone}", fNormal, Brushes.Black, new RectangleF(0, y, pw, 18), center); y += 15;
+            g.DrawString(Constants.ShopInfo.GST,     fNormal, Brushes.Black, new RectangleF(0, y, pw, 18), center); y += 12;
 
             DrawDashedLine(g, pw, y); y += 10;
 
@@ -143,7 +143,7 @@ namespace ShopManagementApp.Utils
             var fNormal = new Font("Arial", 9,  FontStyle.Regular);
             var center  = new StringFormat { Alignment = StringAlignment.Center };
 
-            g.DrawString(Constants.ShopName, fTitle, Brushes.Black, new RectangleF(0, y, pw, 30), center); y += 28;
+            g.DrawString(Constants.ShopInfo.Name, fTitle, Brushes.Black, new RectangleF(0, y, pw, 30), center); y += 28;
             g.DrawString("REPAIR JOB CARD", fHead, Brushes.Black, new RectangleF(0, y, pw, 22), center); y += 25;
 
             DrawSolidLine(g, pw, y); y += 10;

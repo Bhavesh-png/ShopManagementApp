@@ -268,6 +268,11 @@ namespace ShopManagementApp.Data.Excel
             ws.Cell(3, 2).Value = Constants.DefaultAdminPassword;
             ws.Cell(4, 1).Value = "SchemaVersion";
             ws.Cell(4, 2).Value = SchemaVersion;   // ← marks this file as current schema
+            // ── Shop info rows (blank on first install; filled by FirstRunSetupForm) ──
+            ws.Cell(5, 1).Value = Constants.ShopNameKey;    ws.Cell(5, 2).Value = "";
+            ws.Cell(6, 1).Value = Constants.ShopAddressKey; ws.Cell(6, 2).Value = "";
+            ws.Cell(7, 1).Value = Constants.ShopPhoneKey;   ws.Cell(7, 2).Value = "";
+            ws.Cell(8, 1).Value = Constants.ShopGSTKey;     ws.Cell(8, 2).Value = "";
             AutoFit(ws, 2);
         }
 

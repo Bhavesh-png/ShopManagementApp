@@ -30,8 +30,8 @@ DisableProgramGroupPage=no
 
 ; Output
 OutputDir=Output
-OutputBaseFilename=GayatriElectronics_Setup_v{#AppVersion}
-SetupIconFile={#SourceDir}\Assets\AppIcon.ico
+OutputBaseFilename=ShopManager_Setup_v{#AppVersion}
+SetupIconFile=..\ShopManagementApp.UI\Assets\AppIcon.ico
 
 ; Compression
 Compression=lzma2/ultra64
@@ -70,7 +70,7 @@ Name: "startmenuicon"; Description: "Create a &Start Menu shortcut"; GroupDescri
 Source: "{#SourceDir}\{#AppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Assets folder (icons etc.)
-Source: "{#SourceDir}\Assets\*"; DestDir: "{app}\Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\ShopManagementApp.UI\Assets\*"; DestDir: "{app}\Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; NOTE: .pdb files are debug symbols - excluded from release installer
 

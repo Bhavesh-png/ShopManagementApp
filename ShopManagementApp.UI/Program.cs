@@ -1,3 +1,4 @@
+using ShopManagementApp.Business.Services;
 using ShopManagementApp.Data.Excel;
 using ShopManagementApp.UI.Forms;
 using ShopManagementApp.Utils;
@@ -10,7 +11,9 @@ namespace ShopManagementApp.UI
     /// Startup sequence:
     ///   1. Enable visual styles (modern look)
     ///   2. Initialize ExcelManager — creates or opens ShopData.xlsx
-    ///   3. Launch MainForm
+    ///   3. Load shop info from Settings sheet into Constants.ShopInfo
+    ///   4. If shop info not configured — show FirstRunSetupForm
+    ///   5. Launch MainForm
     /// </summary>
     internal static class Program
     {
@@ -31,7 +34,7 @@ namespace ShopManagementApp.UI
             {
                 // This is a fatal startup error — cannot run without data file
                 MessageBox.Show(
-                    $"❌  Could not start {Constants.ShopName}.\n\n" +
+                    $"❌  Could not start the application.\n\n" +
                     $"Reason: {ex.Message}\n\n" +
                     $"Possible fixes:\n" +
                     $"  • Close ShopData.xlsx if it is open in Excel\n" +
@@ -43,7 +46,22 @@ namespace ShopManagementApp.UI
                 return;   // exit without opening MainForm
             }
 
-            // ── Step 2: Launch the main window ──
+            // ── Step 2: Load shop info from Settings sheet ──
+            var adminSvc = new AdminService();
+            adminSvc.LoadShopInfo();
+
+            // ── Step 3: First-run setup if shop not yet configured ──
+            if (!adminSvc.IsShopInfoConfigured())
+            {
+                var setup = new FirstRunSetupForm();
+                if (setup.ShowDialog() != DialogResult.OK)
+                {
+                    // User closed the setup without saving — exit gracefully
+                    return;
+                }
+            }
+
+            // ── Step 4: Launch the main window ──
             Application.Run(new MainForm());
         }
     }
