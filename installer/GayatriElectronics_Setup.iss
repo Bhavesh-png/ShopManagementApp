@@ -90,11 +90,7 @@ Filename: "{app}\{#AppExeName}"; Description: "Launch {#AppFullName} now"; Flags
 ; Clean up any leftover files/folders after uninstall
 Type: filesandordirs; Name: "{app}"
 
-[Registry]
-; Add to Windows "Apps & Features" / Add-Remove Programs with extra info
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}_is1"; ValueType: string; ValueName: "DisplayVersion"; ValueData: "{#AppVersion}"; Flags: uninsdeletevalue
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}_is1"; ValueType: string; ValueName: "Publisher"; ValueData: "{#AppPublisher}"; Flags: uninsdeletevalue
-Root: HKLM; Subkey: "Software\Microsoft\Windows\CurrentVersion\Uninstall\{{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}_is1"; ValueType: string; ValueName: "DisplayName"; ValueData: "{#AppFullName} v{#AppVersion}"; Flags: uninsdeletevalue
+; [Registry] section removed — Inno Setup manages Add/Remove Programs automatically via AppId.
 
 [Messages]
 WelcomeLabel1=Welcome to [name] Setup
